@@ -1,0 +1,33 @@
+# --- Python 通用 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# --- 数据集 (绝对不能传) ---
+# 忽略 data 目录下的所有内容
+data/
+# 但是保留 data 文件夹本身（可选，如果你希望保留目录结构）
+# !data/.gitkeep
+
+# --- 训练产物 ---
+# 忽略模型权重
+checkpoints/
+*.pt
+*.pth
+*.bin
+
+# 忽略日志文件
+logs/
+*.csv
+runs/
+__pycache__
+
+# --- IDE 配置 (个人配置不需要上传) ---
+.vscode/
+.idea/
+.DS_Store
