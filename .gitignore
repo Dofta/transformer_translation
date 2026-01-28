@@ -10,7 +10,7 @@ venv/
 
 # --- 数据集 (绝对不能传) ---
 # 忽略 data 目录下的所有内容
-data/
+# data/
 # 但是保留 data 文件夹本身（可选，如果你希望保留目录结构）
 # !data/.gitkeep
 
@@ -22,7 +22,7 @@ checkpoints/
 *.bin
 
 # 忽略日志文件
-logs/
+# logs/
 *.csv
 runs/
 __pycache__

@@ -1,10 +1,16 @@
 import torch
 
+
 def generate_square_subsequent_mask(sz, device):
-    """生成 Look-ahead Mask (用于解码器，防止看到未来)"""
+    """Generate Look-ahead Mask for Transformer Decoder"""
     mask = (torch.triu(torch.ones((sz, sz), device=device)) == 1).transpose(0, 1)
-    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
+    mask = (
+        mask.float()
+        .masked_fill(mask == 0, float("-inf"))
+        .masked_fill(mask == 1, float(0.0))
+    )
     return mask
+
 
 def create_mask(src, tgt, pad_idx, device):
     src_seq_len = src.shape[1]
@@ -13,7 +19,7 @@ def create_mask(src, tgt, pad_idx, device):
     tgt_mask = generate_square_subsequent_mask(tgt_seq_len, device)
     src_mask = torch.zeros((src_seq_len, src_seq_len), device=device).type(torch.bool)
 
-    src_padding_mask = (src == pad_idx)
-    tgt_padding_mask = (tgt == pad_idx)
-    
+    src_padding_mask = src == pad_idx
+    tgt_padding_mask = tgt == pad_idx
+
     return src_mask, tgt_mask, src_padding_mask, tgt_padding_mask
